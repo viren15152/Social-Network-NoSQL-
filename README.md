@@ -37,9 +37,11 @@ This is an API for a social network web application where users can share their 
 
 1. To use the application clone my repository 
 2. Once you have downloaded it to your local device run the command npm install in your terminal on VS code and this will download the necessary packages. 
-3. To start the app, use the command npm start. 
+
 
 ## Usage
+
+To start the app, use the command npm start.
 
 ## Contributing
 
