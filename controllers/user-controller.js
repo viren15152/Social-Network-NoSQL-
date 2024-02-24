@@ -1,6 +1,16 @@
 const { User, Thought } = require("../models");
 
 const userController = {
+  // Create a new user
+  createUser({ body }, res) {
+    // Create a new user based on the request body
+    User.create(body)
+      // Handle successful creation of the user
+      .then((dbUserData) => res.json(dbUserData))
+      // Handle errors
+      .catch((err) => res.json(err));
+  },
+
   // Retrieve all users
   getAllUser(req, res) {
     // Query all users from the database
@@ -43,7 +53,9 @@ const userController = {
       .then((dbUserData) => {
         // If no user is found with the provided ID, return a 404 status
         if (!dbUserData) {
-          return res.status(404).json({ message: "No user found with this id!" });
+          return res
+            .status(404)
+            .json({ message: "No user found with this id!" });
         }
         // Send the retrieved user in the response
         res.json(dbUserData);
@@ -54,16 +66,6 @@ const userController = {
         // Send a 400 Bad Request status in case of an error
         res.sendStatus(400);
       });
-  },
-
-  // Create a new user
-  createUser({ body }, res) {
-    // Create a new user based on the request body
-    User.create(body)
-      // Handle successful creation of the user
-      .then((dbUserData) => res.json(dbUserData))
-      // Handle errors
-      .catch((err) => res.json(err));
   },
 
   // Update a user by their ID
